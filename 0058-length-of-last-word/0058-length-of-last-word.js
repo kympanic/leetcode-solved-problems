@@ -3,9 +3,19 @@
  * @return {number}
  */
 
-const s = "   fly me   to.   the moon  "
+
 var lengthOfLastWord = function(s) {
-    //trim replaces the white space on both ends
-    const array = s.trim().split(" ")
-    return array[array.length-1].length
+    let i = s.length - 1
+    let count = 0
+    while(i >= 0){
+        if(s[i] === " " && count > 0){
+            return count
+        }else if(s[i] !== " ")
+            count++
+        i--
+    }
+    return count
+    
 };
+    
+   
