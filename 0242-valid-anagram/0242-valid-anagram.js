@@ -16,8 +16,6 @@ var isAnagram = function(s, t) {
     for(let char of t){
         frequencyCounter2[char] = (frequencyCounter2[char] || 0) + 1
     }
-    console.log(frequencyCounter1)
-    console.log(frequencyCounter2)
     for(let key in frequencyCounter1){
         if(frequencyCounter2[key] !== frequencyCounter1[key]){
             return false
