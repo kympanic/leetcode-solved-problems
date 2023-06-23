@@ -3,9 +3,19 @@
  * @return {boolean}
  */
 var isPalindrome = function(s) {
-   let newString = s.toLowerCase().replace(/[^a-z0-9]/gi,'');
-   for(let i = 0, j = newString.length -1; i <= j; i++, j--){
-       if(newString[i] !== newString[j]) return false;
-   }
-       return true;
-}
+    const regex = /[^A-Za-z0-9]/g;
+    const string = s.replace(regex, "").toLowerCase(); 
+    if(string.length === 0)return true;
+    
+    let left = 0;
+    let right = string.length - 1;
+    while(left < right){
+        if(string[left] === string[right]){
+            left++
+            right--
+        }else{
+            return false
+        }
+    }
+    return true;
+};
