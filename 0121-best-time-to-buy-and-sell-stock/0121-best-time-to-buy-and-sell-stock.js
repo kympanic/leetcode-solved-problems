@@ -3,14 +3,16 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-    //keep track of the best buy day so far
-    //keep track of the largest difference so far
-    let profit = 0;
-    let min = prices[0]
-    for(let i = 1; i < prices.length;i++){
-        min = Math.min(prices[i],min)
-        profit= Math.max(profit, prices[i]- min)
+    let [left,right,max] = [0,1,0]
+    while(right < prices.length){
+        const canSlide = prices[right] <= prices[left]
+        if(canSlide) left = right;
+        const window = prices[right] - prices[left]
+        
+        max = Math.max(max,window)
+        right++;
     }
-    return profit
+    return max;
 };
-  
+
+[7,1,5,3,6,4]
