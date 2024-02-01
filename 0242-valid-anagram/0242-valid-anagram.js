@@ -6,21 +6,25 @@
 
 //we will use the frequency counter method
 var isAnagram = function(s, t) {
-    if(s.length !== t.length) return false;
-    
-    let frequencyCounter1 = {}
-    let frequencyCounter2 = {}
+    let count = {};
+    if(s.length !== t.length) return false
     for(let char of s){
-        frequencyCounter1[char] = (frequencyCounter1[char] || 0) + 1;
+       if(!(char in count)){
+           count[char] = 0;
+       }
+        count[char] +=1
     }
     for(let char of t){
-        frequencyCounter2[char] = (frequencyCounter2[char] || 0) + 1
-    }
-    for(let key in frequencyCounter1){
-        if(frequencyCounter2[key] !== frequencyCounter1[key]){
+        if(char in count){
+            count[char]-=1
+        }else{
             return false
         }
     }
-    return true
+    for(let char in count){
+        if(count[char]!== 0)return false
+    }
+    
+    return true;
 };
 
