@@ -4,13 +4,17 @@
  * @return {boolean}
  */
 var isSubsequence = function(s, t) {
-    if(s.length > t.length) return false
-    
-    let counter = 0;
-    //we loop through t and everytime we get a letter that matches with s[counter] we will add to counter
-    for(let char in t){
-        if(s[counter] ===t[char])counter++
+    let i = 0;
+    let j = 0;
+    while(i < s.length){
+        if(j === t.length){
+            return false;
+        }
+        if(s[i] === t[j]){
+            i++;
+        }
+        j++
     }
-    //return if length of s === the counter
-    return counter === s.length
+    return true
 };
+
