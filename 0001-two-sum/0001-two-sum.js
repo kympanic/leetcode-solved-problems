@@ -4,18 +4,12 @@
  * @return {number[]}
  */
 var twoSum = function(nums, target) {
-        let i = 0;
-    let y = 0;
-    let firstNumber = 0;
-    let secondNumber = 0;
-    while(i < nums.length - 1){
-        firstNumber = nums[i];
-        y = i + 1;
-        while(y < nums.length){
-            secondNumber = nums[y]
-            if( firstNumber + secondNumber === target) return [i, y]
-            y++;
-        }
-        i++;
+    let i=0,arr= [...nums]
+    while(arr.length > 1){
+       let n = arr.shift()
+       if(arr.indexOf(target-n) != -1){
+           i = nums.indexOf(n)
+           return [nums.indexOf(n), nums.indexOf(target - n , i+1)]
+       }
     }
 };
