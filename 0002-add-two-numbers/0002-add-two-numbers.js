@@ -11,32 +11,24 @@
  * @return {ListNode}
  */
 var addTwoNumbers = function(l1, l2) {
-    
-    let sum = 0;
-    let current = new ListNode(0);
-    let result = current;
-    
-    while(l1 || l2) {
-        
-        if(l1) {
-            sum += l1.val;
+    const res = new ListNode('dummy');
+    let curr = res;
+    let carry = 0;
+    while(l1 != null || l2 != null) {
+        let val = carry;
+        if(l1 != null) {
+            val +=l1.val;
             l1 = l1.next;
         }
-        
-        if(l2) {
-            sum += l2.val;
+        if(l2 != null) {
+            val +=l2.val;
             l2 = l2.next;
         }
+        carry = val > 9 ? 1: 0;
+        curr.next = new ListNode(val % 10);
         
-        current.next = new ListNode(sum % 10);
-        current = current.next;
-        
-        sum = sum > 9 ? 1 : 0;
+        curr = curr.next;
     }
-    
-    if(sum) {
-        current.next = new ListNode(sum);
-    }
-    
-    return result.next;
+    if( carry > 0) curr.next = new ListNode(1);
+    return res.next;
 };
